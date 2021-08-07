@@ -16,7 +16,7 @@ function mswarak_teack_unauthorized_access_menu_option()
      * -install db
      * -find unauthorized access
      * -insert
-     * show in table
+     * +show in table
      */
     
     try
