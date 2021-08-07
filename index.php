@@ -174,5 +174,8 @@ function mswarak_teack_unauthorized_access_create_db()
     dbDelta( $sql );
 }
 
+// add plugin to WP admin menu
 add_action("admin_menu", "mswarak_teack_unauthorized_access_menu_option");
+
+// Call custom die handler
 add_filter( 'wp_die_handler', 'mswarak_teack_unauthorized_access_filter_wp_die_handler', 10, 1 );
