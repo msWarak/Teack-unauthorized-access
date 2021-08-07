@@ -19,6 +19,11 @@ function mswarak_teack_unauthorized_access_menu_option()
      * +show in table
      */
     
+    if ( is_admin() )
+    {
+        add_menu_page('Teack unauthorized access', 'Teack unauthorized access', 'exist', 'financial', 'mswarak_teack_unauthorized_access_index_page', 'dashicons-list-view');
+    }
+    
     try
     {
         $wpdb->hide_errors();
@@ -35,7 +40,41 @@ function mswarak_teack_unauthorized_access_menu_option()
     }
 }
 
-function filter_wp_die_handler( $array )
+function mswarak_teack_unauthorized_access_index_page()
+{
+    global $wpdb, $mswarak_teack_unauthorized_access_table_name;
+    
+    $mswarak_teack_unauthorized_access_table_counter = 1;
+    $mswarak_teack_unauthorized_access_table_TR = "";
+    foreach ($wpdb->get_results ("SELECT * FROM {$mswarak_teack_unauthorized_access_table_name} ORDER BY id DESC" ) as $value)
+    {
+        $mswarak_teack_data = json_decode($value->data, true);
+        $mswarak_teack_date = date( "Y-m-d", $value->date );
+        //$value->orders
+        $mswarak_teack_unauthorized_access_table_TR .= "
+    <tr style='text-align: center;'>
+        <td>{$mswarak_teack_unauthorized_access_table_counter}</td>
+        <td>{$mswarak_teack_data["ip"]["ipaddress"]}</td>
+        <td>{$mswarak_teack_date}</td>
+    </tr>";
+        
+        $mswarak_teack_unauthorized_access_table_counter++;
+    }
+    
+    echo "
+<h2>List of unauthorized access to your website</h2>
+<table style='width:100%'>
+    <tr>
+        <th>#</th>
+        <th>IP</th> 
+        <th>Date</th>
+    </tr>
+    {$mswarak_teack_unauthorized_access_table_TR}
+</table>
+";
+}
+
+function mswarak_teack_unauthorized_access_filter_wp_die_handler( $array )
 {
     return 'mswarak_teack_unauthorized_access_report_insert';
 }
@@ -142,4 +181,4 @@ function mswarak_teack_unauthorized_access_create_db()
 }
 
 add_action("admin_menu", "mswarak_teack_unauthorized_access_menu_option");
-add_filter( 'wp_die_handler', 'filter_wp_die_handler', 10, 1 );
+add_filter( 'wp_die_handler', 'mswarak_teack_unauthorized_access_filter_wp_die_handler', 10, 1 );
