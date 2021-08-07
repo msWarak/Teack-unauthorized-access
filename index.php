@@ -12,12 +12,6 @@ $mswarak_teack_unauthorized_access_table_name = $wpdb->prefix . "mswarak_teack_u
 function mswarak_teack_unauthorized_access_menu_option()
 {
     global $wpdb, $mswarak_teack_unauthorized_access_table_name;
-    /*
-     * -install db
-     * -find unauthorized access
-     * -insert
-     * +show in table
-     */
     
     if ( is_admin() )
     {
