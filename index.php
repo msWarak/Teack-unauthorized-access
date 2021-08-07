@@ -13,9 +13,9 @@ function mswarak_teack_unauthorized_access_menu_option()
 {
     global $wpdb, $mswarak_teack_unauthorized_access_table_name;
     /*
-     * install db
-     * find unauthorized access
-     * insert
+     * -install db
+     * -find unauthorized access
+     * -insert
      * show in table
      */
     
