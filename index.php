@@ -34,12 +34,19 @@ function mswarak_teack_unauthorized_access_menu_option()
     }
 }
 
+/**
+ * Show the data in the database as table
+ */ 
 function mswarak_teack_unauthorized_access_index_page()
 {
+    // Call global variables
     global $wpdb, $mswarak_teack_unauthorized_access_table_name;
     
+    // Set local variables
     $mswarak_teack_unauthorized_access_table_counter = 1;
     $mswarak_teack_unauthorized_access_table_TR = "";
+    
+    // Loop in the database
     foreach ($wpdb->get_results ("SELECT * FROM {$mswarak_teack_unauthorized_access_table_name} ORDER BY id DESC" ) as $value)
     {
         $mswarak_teack_data = json_decode($value->data, true);
@@ -55,6 +62,8 @@ function mswarak_teack_unauthorized_access_index_page()
         $mswarak_teack_unauthorized_access_table_counter++;
     }
     
+    
+    // Priny the table
     echo "
 <h2>List of unauthorized access to your website</h2>
 <table style='width:100%'>
@@ -72,6 +81,7 @@ function mswarak_teack_unauthorized_access_index_page()
  * Temporarily wp die handler
  * 
  * @param array          $array   Optional. Default empty.
+ * @return mswarak_teack_unauthorized_access_report_insert()
  */ 
 function mswarak_teack_unauthorized_access_filter_wp_die_handler( $array )
 {
