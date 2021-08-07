@@ -68,10 +68,24 @@ function mswarak_teack_unauthorized_access_index_page()
 ";
 }
 
+/**
+ * Temporarily wp die handler
+ * 
+ * @param array          $array   Optional. Default empty.
+ */ 
 function mswarak_teack_unauthorized_access_filter_wp_die_handler( $array )
 {
     return 'mswarak_teack_unauthorized_access_report_insert';
 }
+
+/**
+ * Insert a report about the access attempt
+ *
+ * @param string|WP_Error $message Error message or WP_Error object.
+ * @param string          $title   Optional. Error title. Default empty.
+ * @param string|array    $args    Optional. Arguments to control behavior. Default empty array.
+ * @return _default_wp_die_handler()
+ */ 
 function mswarak_teack_unauthorized_access_report_insert( $message, $title, $args )
 {
     global $wpdb, $current_user, $mswarak_teack_unauthorized_access_table_name;
@@ -157,6 +171,9 @@ function mswarak_teack_unauthorized_access_report_insert( $message, $title, $arg
     _default_wp_die_handler($message, $title, $args);
 }
 
+/**
+ * Create new table in the WP database
+ */ 
 function mswarak_teack_unauthorized_access_create_db()
 {
     global $wpdb, $mswarak_teack_unauthorized_access_table_name;
