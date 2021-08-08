@@ -1,9 +1,10 @@
 === Track unauthorized access ===
-Contributors: veraxus
-Tags: admin, track, unauthorized, access,
+Contributors: mswarak
+Tags: admin, track, unauthorized, access, security
 Requires at least: 3.6
-Tested up to: 3.8
-Stable tag: 0.1
+Tested up to: 5.8
+Stable tag: 1.0
+License: GPLv2
 
 Customize admin menus. Remove pages, add pages, etc.
 
