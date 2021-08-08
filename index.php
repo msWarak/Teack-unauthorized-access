@@ -8,8 +8,8 @@
  Author URI: https://mswarak.com
 */
 
+// Set global variables
 $mswarak_teack_unauthorized_access_table_name = $wpdb->prefix . "mswarak_teack_unauthorized_access";
-
 
 /**
  * Add the plugin to WP admin menu (if user is website admin)
