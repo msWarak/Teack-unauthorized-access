@@ -9,33 +9,45 @@
 */
 
 $mswarak_teack_unauthorized_access_table_name = $wpdb->prefix . "mswarak_teack_unauthorized_access";
+
+
+/**
+ * Add the plugin to WP admin menu (if user is website admin)
+ */ 
 function mswarak_teack_unauthorized_access_menu_option()
 {
+    // Call global variables
     global $wpdb, $mswarak_teack_unauthorized_access_table_name;
     
+    // Check if the user is admin
     if ( is_admin() )
     {
+        // Add the plugin to WP admin menu
         add_menu_page('Teack unauthorized access', 'Teack unauthorized access', 'exist', 'financial', 'mswarak_teack_unauthorized_access_index_page', 'dashicons-list-view');
     }
     
+    // Check if the plugin DB exists
     try
     {
+        // Search
         $wpdb->hide_errors();
         $wpdb->get_var( 'SELECT COUNT(*) FROM ' . $mswarak_teack_unauthorized_access_table_name );
         $wpdb->show_errors();
     }
     catch (Exception $e)
     {
+        // Error
         error_log($e);
     }
     finally
     {
+        // If not found, create new DB
         mswarak_teack_unauthorized_access_create_db();
     }
 }
 
 /**
- * Show the data in the database as table
+ * Show the data in the database as HTML table
  */ 
 function mswarak_teack_unauthorized_access_index_page()
 {
