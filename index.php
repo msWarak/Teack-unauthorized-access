@@ -1,29 +1,29 @@
 <?php
 /*
- Plugin Name: Teack unauthorized access
+ Plugin Name: Track unauthorized access
  Plugin URI: http://mswarak.com
- Description: Teack unauthorized access to your WP website
+ Description: Track unauthorized access to your WP website
  Author: msaleh
  Version: 1.0
  Author URI: https://mswarak.com
 */
 
 // Set global variables
-$mswarak_teack_unauthorized_access_table_name = $wpdb->prefix . "mswarak_teack_unauthorized_access";
+$mswarak_track_unauthorized_access_table_name = $wpdb->prefix . "mswarak_track_unauthorized_access";
 
 /**
  * Add the plugin to WP admin menu (if user is website admin)
  */ 
-function mswarak_teack_unauthorized_access_menu_option()
+function mswarak_track_unauthorized_access_menu_option()
 {
     // Call global variables
-    global $wpdb, $mswarak_teack_unauthorized_access_table_name;
+    global $wpdb, $mswarak_track_unauthorized_access_table_name;
     
     // Check if the user is admin
     if ( is_admin() )
     {
         // Add the plugin to WP admin menu
-        add_menu_page('Teack unauthorized access', 'Teack unauthorized access', 'exist', 'financial', 'mswarak_teack_unauthorized_access_index_page', 'dashicons-list-view');
+        add_menu_page('Track unauthorized access', 'Track unauthorized access', 'exist', 'mswarak_track_unauthorized_access', 'mswarak_track_unauthorized_access_index_page', 'dashicons-list-view');
     }
     
     // Check if the plugin DB exists
@@ -31,7 +31,7 @@ function mswarak_teack_unauthorized_access_menu_option()
     {
         // Search
         $wpdb->hide_errors();
-        $wpdb->get_var( 'SELECT COUNT(*) FROM ' . $mswarak_teack_unauthorized_access_table_name );
+        $wpdb->get_var( 'SELECT COUNT(*) FROM ' . $mswarak_track_unauthorized_access_table_name );
         $wpdb->show_errors();
     }
     catch (Exception $e)
@@ -42,36 +42,36 @@ function mswarak_teack_unauthorized_access_menu_option()
     finally
     {
         // If not found, create new DB
-        mswarak_teack_unauthorized_access_create_db();
+        mswarak_track_unauthorized_access_create_db();
     }
 }
 
 /**
  * Show the data in the database as HTML table
  */ 
-function mswarak_teack_unauthorized_access_index_page()
+function mswarak_track_unauthorized_access_index_page()
 {
     // Call global variables
-    global $wpdb, $mswarak_teack_unauthorized_access_table_name;
+    global $wpdb, $mswarak_track_unauthorized_access_table_name;
     
     // Set local variables
-    $mswarak_teack_unauthorized_access_table_counter = 1;
-    $mswarak_teack_unauthorized_access_table_TR = "";
+    $mswarak_track_unauthorized_access_table_counter = 1;
+    $mswarak_track_unauthorized_access_table_TR = "";
     
     // Loop in the database
-    foreach ($wpdb->get_results ("SELECT * FROM {$mswarak_teack_unauthorized_access_table_name} ORDER BY id DESC" ) as $value)
+    foreach ($wpdb->get_results ("SELECT * FROM {$mswarak_track_unauthorized_access_table_name} ORDER BY id DESC" ) as $value)
     {
-        $mswarak_teack_data = json_decode($value->data, true);
-        $mswarak_teack_date = date( "Y-m-d", $value->date );
+        $mswarak_track_data = json_decode($value->data, true);
+        $mswarak_track_date = date( "Y-m-d", $value->date );
         //$value->orders
-        $mswarak_teack_unauthorized_access_table_TR .= "
+        $mswarak_track_unauthorized_access_table_TR .= "
     <tr style='text-align: center;'>
-        <td>{$mswarak_teack_unauthorized_access_table_counter}</td>
-        <td>{$mswarak_teack_data["ip"]["ipaddress"]}</td>
-        <td>{$mswarak_teack_date}</td>
+        <td>{$mswarak_track_unauthorized_access_table_counter}</td>
+        <td>{$mswarak_track_data["ip"]["ipaddress"]}</td>
+        <td>{$mswarak_track_date}</td>
     </tr>";
         
-        $mswarak_teack_unauthorized_access_table_counter++;
+        $mswarak_track_unauthorized_access_table_counter++;
     }
     
     
@@ -84,7 +84,7 @@ function mswarak_teack_unauthorized_access_index_page()
         <th>IP</th> 
         <th>Date</th>
     </tr>
-    {$mswarak_teack_unauthorized_access_table_TR}
+    {$mswarak_track_unauthorized_access_table_TR}
 </table>
 ";
 }
@@ -93,11 +93,11 @@ function mswarak_teack_unauthorized_access_index_page()
  * Temporarily wp die handler
  * 
  * @param array          $array   Optional. Default empty.
- * @return mswarak_teack_unauthorized_access_report_insert()
+ * @return mswarak_track_unauthorized_access_report_insert()
  */ 
-function mswarak_teack_unauthorized_access_filter_wp_die_handler( $array )
+function mswarak_track_unauthorized_access_filter_wp_die_handler( $array )
 {
-    return 'mswarak_teack_unauthorized_access_report_insert';
+    return 'mswarak_track_unauthorized_access_report_insert';
 }
 
 /**
@@ -108,9 +108,9 @@ function mswarak_teack_unauthorized_access_filter_wp_die_handler( $array )
  * @param string|array    $args    Optional. Arguments to control behavior. Default empty array.
  * @return _default_wp_die_handler()
  */ 
-function mswarak_teack_unauthorized_access_report_insert( $message, $title, $args )
+function mswarak_track_unauthorized_access_report_insert( $message, $title, $args )
 {
-    global $wpdb, $current_user, $mswarak_teack_unauthorized_access_table_name;
+    global $wpdb, $current_user, $mswarak_track_unauthorized_access_table_name;
     $is_user = false;
     $username = "";
     $ipaddress = "UNKNOWN";
@@ -184,7 +184,7 @@ function mswarak_teack_unauthorized_access_report_insert( $message, $title, $arg
         ),
     );
     
-    $wpdb->insert($mswarak_teack_unauthorized_access_table_name, array(
+    $wpdb->insert($mswarak_track_unauthorized_access_table_name, array(
         'message' => $message,
         'data' => json_encode($postData, JSON_UNESCAPED_UNICODE),
         'date' => time()
@@ -196,12 +196,12 @@ function mswarak_teack_unauthorized_access_report_insert( $message, $title, $arg
 /**
  * Create new table in the WP database
  */ 
-function mswarak_teack_unauthorized_access_create_db()
+function mswarak_track_unauthorized_access_create_db()
 {
-    global $wpdb, $mswarak_teack_unauthorized_access_table_name;
+    global $wpdb, $mswarak_track_unauthorized_access_table_name;
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE $mswarak_teack_unauthorized_access_table_name (
+    $sql = "CREATE TABLE $mswarak_track_unauthorized_access_table_name (
       `id` INT(5) NOT NULL AUTO_INCREMENT ,
       `message` TEXT NOT NULL , 
       `data` TEXT NOT NULL , 
@@ -214,7 +214,7 @@ function mswarak_teack_unauthorized_access_create_db()
 }
 
 // add plugin to WP admin menu
-add_action("admin_menu", "mswarak_teack_unauthorized_access_menu_option");
+add_action("admin_menu", "mswarak_track_unauthorized_access_menu_option");
 
 // Call custom die handler
-add_filter( 'wp_die_handler', 'mswarak_teack_unauthorized_access_filter_wp_die_handler', 10, 1 );
+add_filter( 'wp_die_handler', 'mswarak_track_unauthorized_access_filter_wp_die_handler', 10, 1 );
