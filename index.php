@@ -130,14 +130,6 @@ function mswarak_track_unauthorized_access_report_insert( $message, $title, $arg
     $request = array();
     $ip_list = array();
     
-    if(isset($_COOKIE)){$request["COOKIE"] = $_COOKIE;}
-    if(isset($_ENV)){$request["ENV"] = $_ENV;}
-    if(isset($_FILES)){$request["FILES"] = $_FILES;}
-    if(isset($_GET)){$request["GET"] = $_GET;}
-    if(isset($_POST)){$request["POST"] = $_POST;}
-    if(isset($_REQUEST)){$request["REQUEST"] = $_REQUEST;}
-    if(isset($_SESSION)){$request["SESSION"] = $_SESSION;}
-    
     if (isset($_SERVER['HTTP_CLIENT_IP']))
     {
         $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
