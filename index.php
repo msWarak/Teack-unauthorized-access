@@ -20,7 +20,7 @@ function mswarak_track_unauthorized_access_menu_option()
     global $wpdb, $mswarak_track_unauthorized_access_table_name;
     
     // Check if the user is admin
-    if ( is_admin() )
+    if ( is_super_admin() )
     {
         // Add the plugin to WP admin menu
         add_menu_page('Track unauthorized access', 'Track unauthorized access', 'exist', 'mswarak_track_unauthorized_access', 'mswarak_track_unauthorized_access_index_page', 'dashicons-list-view');
