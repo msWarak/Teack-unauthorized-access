@@ -74,14 +74,7 @@ function mswarak_track_unauthorized_access_index_page()
         $mswarak_track_unauthorized_access_table_counter++;
     }
     
-    // Allowed HTML tags array
-    $allowed_html_tags = array( 'tr' => array('style' => array()), 'td' => array(), 'p' => array() );
-    
-    // Escaping HTML blocks.
-    $mswarak_track_unauthorized_access_table_TR_esc = wp_kses($mswarak_track_unauthorized_access_table_TR, $allowed_html_tags);
-    
-    // Priny the table
-    echo "
+    $mswarak_track_unauthorized_access_table = "
 <h2>List of unauthorized access to your website</h2>
 <table style='width:100%'>
     <tr>
@@ -89,9 +82,18 @@ function mswarak_track_unauthorized_access_index_page()
         <th>IP</th> 
         <th>Date</th>
     </tr>
-    {$mswarak_track_unauthorized_access_table_TR_esc}
+    {$mswarak_track_unauthorized_access_table_TR}
 </table>
 ";
+    
+    // Allowed HTML tags array
+    $allowed_html_tags = array( 'h2' => array(),'table' => array('style' => array()),'tr' => array('style' => array()), 'td' => array(), 'th' => array(), 'p' => array() );
+    
+    // Escaping HTML blocks.
+    $mswarak_track_unauthorized_access_table_esc = wp_kses($mswarak_track_unauthorized_access_table, $allowed_html_tags);
+    
+    // Priny the table
+    echo $mswarak_track_unauthorized_access_table_esc;
 }
 
 /**
