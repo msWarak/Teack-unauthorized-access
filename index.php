@@ -74,8 +74,11 @@ function mswarak_track_unauthorized_access_index_page()
         $mswarak_track_unauthorized_access_table_counter++;
     }
     
+    // Allowed HTML tags array
+    $allowed_html_tags = array( 'tr' => array(), 'td' => array(), 'p' => array() );
+    
     // Escaping HTML blocks.
-    $mswarak_track_unauthorized_access_table_TR_esc = esc_html($mswarak_track_unauthorized_access_table_TR);
+    $mswarak_track_unauthorized_access_table_TR_esc = wp_kses($mswarak_track_unauthorized_access_table_TR, $allowed_html_tags);
     
     // Priny the table
     echo "
