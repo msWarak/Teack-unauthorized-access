@@ -74,6 +74,8 @@ function mswarak_track_unauthorized_access_index_page()
         $mswarak_track_unauthorized_access_table_counter++;
     }
     
+    // Escaping HTML blocks.
+    $mswarak_track_unauthorized_access_table_TR_esc = esc_html($mswarak_track_unauthorized_access_table_TR);
     
     // Priny the table
     echo "
@@ -84,7 +86,7 @@ function mswarak_track_unauthorized_access_index_page()
         <th>IP</th> 
         <th>Date</th>
     </tr>
-    {$mswarak_track_unauthorized_access_table_TR}
+    {$mswarak_track_unauthorized_access_table_TR_esc}
 </table>
 ";
 }
