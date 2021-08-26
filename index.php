@@ -89,11 +89,8 @@ function mswarak_track_unauthorized_access_index_page()
     // Allowed HTML tags array
     $allowed_html_tags = array( 'h2' => array(),'table' => array('style' => array()),'tr' => array('style' => array()), 'td' => array(), 'th' => array(), 'p' => array() );
     
-    // Escaping HTML blocks.
-    $mswarak_track_unauthorized_access_table_esc = wp_kses($mswarak_track_unauthorized_access_table, $allowed_html_tags);
-    
-    // Priny the table
-    echo $mswarak_track_unauthorized_access_table_esc;
+    // Escaping HTML blocks and priny the table
+    echo wp_kses($mswarak_track_unauthorized_access_table, $allowed_html_tags);
 }
 
 /**
