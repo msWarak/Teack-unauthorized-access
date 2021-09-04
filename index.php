@@ -3,8 +3,8 @@
  Plugin Name: Track unauthorized access
  Plugin URI: http://mswarak.com
  Description: Track unauthorized access to your WP website
- Author: msaleh
- Version: 1.1.1
+ Author: msWarak
+ Version: 1.1.2
  Author URI: https://mswarak.com
 */
 
