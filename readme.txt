@@ -1,12 +1,12 @@
 === Track unauthorized access ===
-Contributors: mswarak
+Contributors: msWarak
 Tags: admin, track, unauthorized, access, security
 Requires at least: 3.6
 Tested up to: 5.8
-Stable tag: 1.0
+Stable tag: 1.1.2
 License: GPLv2
 
-Customize admin menus. Remove pages, add pages, etc.
+Track unauthorized access to your WP website.
 
 == Description ==
 
@@ -29,3 +29,10 @@ Track unauthorized access to your WP website
 
 = 1.0 ( 2021/08/07 ) =
 * Initial beta. Uploaded to github.
+
+= 1.1.0 ( 2021/08/29 ) =
+* Fixing security problems.
+
+= 1.1.2 ( 2021/09/04 ) =
+* Preparing for localization.
+* Updating author name.
