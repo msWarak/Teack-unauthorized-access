@@ -4,7 +4,7 @@
  Plugin URI: http://mswarak.com
  Description: Track unauthorized access to your WP website
  Author: msaleh
- Version: 1.1.0
+ Version: 1.1.1
  Author URI: https://mswarak.com
 */
 
@@ -23,7 +23,7 @@ function mswarak_track_unauthorized_access_menu_option()
     if ( is_super_admin() )
     {
         // Add the plugin to WP admin menu
-        add_menu_page('Track unauthorized access', 'Track unauthorized access', 'exist', 'mswarak_track_unauthorized_access', 'mswarak_track_unauthorized_access_index_page', 'dashicons-list-view');
+        add_menu_page( __("Track unauthorized access"), __("Track unauthorized access"), 'exist', 'mswarak_track_unauthorized_access', 'mswarak_track_unauthorized_access_index_page', 'dashicons-list-view');
     }
     
     // Check if the plugin DB exists
@@ -75,12 +75,12 @@ function mswarak_track_unauthorized_access_index_page()
     }
     
     $mswarak_track_unauthorized_access_table = "
-<h2>List of unauthorized access to your website</h2>
+<h2>" . __("List of unauthorized access to your website") ."</h2>
 <table style='width:100%'>
     <tr>
         <th>#</th>
-        <th>IP</th> 
-        <th>Date</th>
+        <th>" . __("IP") ."</th> 
+        <th>" . __("Date") ."</th>
     </tr>
     {$mswarak_track_unauthorized_access_table_TR}
 </table>
