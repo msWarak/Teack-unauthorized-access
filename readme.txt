@@ -26,13 +26,12 @@ Track unauthorized access to your WP website
 
 
 == Changelog ==
-
-= 1.0 ( 2021/08/07 ) =
-* Initial beta. Uploaded to github.
+= 1.1.2 ( 2021/09/04 ) =
+* Preparing for localization.
+* Updating author name.
 
 = 1.1.0 ( 2021/08/29 ) =
 * Fixing security problems.
 
-= 1.1.2 ( 2021/09/04 ) =
-* Preparing for localization.
-* Updating author name.
+= 1.0 ( 2021/08/07 ) =
+* Initial beta. Uploaded to github.
