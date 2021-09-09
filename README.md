@@ -8,3 +8,4 @@ This plugins can track most WP die mesaages like:
     <li>Not Available.</li>
 </ul>
 Then show WP default die message.
+![Screenshot](screenshot-1.jpg)
