@@ -9,3 +9,4 @@ This plugins can track most WP die mesaages like:
 </ul>
 Then show WP default die message.
 ![Screenshot](screenshot-1.jpg)
+![Screenshot](https://github.com/msWarak/Track-unauthorized-access/blob/master/assets/img/screenshot-2.jpg?raw=true)
