@@ -8,6 +8,7 @@ This plugins can track most WP die mesaages like:
     <li>Not Available.</li>
 </ul>
 Then show WP default die message.
-![Screenshot](screenshot-1.jpg)
-![Screenshot](https://github.com/msWarak/Track-unauthorized-access/blob/master/assets/img/screenshot-2.jpg?raw=true)
+
+**Screenshot:**
 <p><img src="https://github.com/msWarak/Track-unauthorized-access/blob/master/assets/img/screenshot-1.jpg?raw=true" alt="Screenshot"></p>
+<p><img src="https://github.com/msWarak/Track-unauthorized-access/blob/master/assets/img/screenshot-2.jpg?raw=true" alt="Screenshot"></p>
