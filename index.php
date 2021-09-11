@@ -128,7 +128,7 @@ function mswarak_track_unauthorized_access_index_page()
                 
                 $mswarak_track_unauthorized_access_content .= "
         <h2>" . __("Browse unauthorized access") . " #{$browse_access_id}</h2>
-        <p>" . __("Message") . ": {$mswarak_track_data["message"]}</p>
+        <p>" . __("Message") . ": {$value->message}</p>
         <p>" . __("Date") . ": {$mswarak_track_date}</p>
         <p>" . __("URL") . ": {$mswarak_track_data["url"]}</p>
         <p>" . __("Is user") . ": {$mswarak_track_IsUser}</p>
