@@ -54,27 +54,37 @@ function mswarak_track_unauthorized_access_index_page()
     // Call global variables
     global $wpdb, $mswarak_track_unauthorized_access_table_name;
     
-    // Set local variables
-    $mswarak_track_unauthorized_access_table_counter = 1;
-    $mswarak_track_unauthorized_access_table_TR = "";
-    
-    // Loop in the database
-    foreach ($wpdb->get_results ("SELECT * FROM {$mswarak_track_unauthorized_access_table_name} ORDER BY id DESC" ) as $value)
+    // Get destination data
+    $Action = null;
+    if(isset($_GET["action"]))
     {
-        $mswarak_track_data = json_decode($value->data, true);
-        $mswarak_track_date = date( "Y-m-d", $value->date );
-        //$value->orders
-        $mswarak_track_unauthorized_access_table_TR .= "
+        $Action = $_GET["action"];
+    }
+    
+    if($Action == null)
+    {
+        // Default view
+        // Set local variables
+        $mswarak_track_unauthorized_access_table_counter = 1;
+        $mswarak_track_unauthorized_access_table_TR = "";
+
+        // Loop in the database
+        foreach ($wpdb->get_results ("SELECT * FROM {$mswarak_track_unauthorized_access_table_name} ORDER BY id DESC" ) as $value)
+        {
+            $mswarak_track_data = json_decode($value->data, true);
+            $mswarak_track_date = date( "Y-m-d", $value->date );
+            
+            $mswarak_track_unauthorized_access_table_TR .= "
     <tr style='text-align: center;'>
-        <td>{$mswarak_track_unauthorized_access_table_counter}</td>
+        <td><a href='?page=mswarak_track_unauthorized_access&action=browse_access_date&id={$value->id}'>{$mswarak_track_unauthorized_access_table_counter}</a></td>
         <td>{$mswarak_track_data["ip"]["ipaddress"]}</td>
         <td>{$mswarak_track_date}</td>
     </tr>";
-        
-        $mswarak_track_unauthorized_access_table_counter++;
-    }
-    
-    $mswarak_track_unauthorized_access_table = "
+
+            $mswarak_track_unauthorized_access_table_counter++;
+        }
+
+        $mswarak_track_unauthorized_access_table = "
 <h2>" . __("List of unauthorized access to your website") ."</h2>
 <table style='width:100%'>
     <tr>
@@ -84,13 +94,46 @@ function mswarak_track_unauthorized_access_index_page()
     </tr>
     {$mswarak_track_unauthorized_access_table_TR}
 </table>
-";
+    ";
+
+        // Allowed HTML tags array
+        $allowed_html_tags = array( 'h2' => array(),'table' => array('style' => array()),'tr' => array('style' => array()), 'td' => array(), 'th' => array(), 'p' => array(), 'a' => array('href' => array()) );
+
+        // Escaping HTML blocks and print the table
+        echo wp_kses($mswarak_track_unauthorized_access_table, $allowed_html_tags);
+    }
+    elseif($Action == "browse_access_date")
+    {
+        // Browse unauthorized access date
+        if(isset($_GET["id"]))
+        {
+            // Set local variables
+            $browse_access_id = $_GET["id"];
+            $mswarak_track_unauthorized_access_content = "";
+
+            // Loop in the database
+            foreach ($wpdb->get_results ("SELECT * FROM {$mswarak_track_unauthorized_access_table_name} WHERE id = {$browse_access_id} ORDER BY id DESC" ) as $value)
+            {
+                $mswarak_track_data = json_decode($value->data, true);
+                $mswarak_track_date = date( "Y-m-d", $value->date );
+                
+                $mswarak_track_unauthorized_access_content .= "
+        <p>" . __("Message") . ": {$mswarak_track_data["message"]}</p>
+        <p>" . __("Date") . ": {$mswarak_track_date}</p>";
+            }
+
+            // Allowed HTML tags array
+            $allowed_html_tags = array( 'h2' => array(), 'p' => array());
+
+            // Escaping and print content
+            echo wp_kses($mswarak_track_unauthorized_access_content, $allowed_html_tags);
+        }
+    }
+    else
+    {
+        // Error
+    }
     
-    // Allowed HTML tags array
-    $allowed_html_tags = array( 'h2' => array(),'table' => array('style' => array()),'tr' => array('style' => array()), 'td' => array(), 'th' => array(), 'p' => array() );
-    
-    // Escaping HTML blocks and priny the table
-    echo wp_kses($mswarak_track_unauthorized_access_table, $allowed_html_tags);
 }
 
 /**
