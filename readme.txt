@@ -2,8 +2,8 @@
 Contributors: msWarak
 Tags: admin, track, unauthorized, access, security
 Requires at least: 3.6
-Tested up to: 5.8
-Stable tag: 1.1.2
+Tested up to: 5.8.1
+Stable tag: 1.1.3
 License: GPLv2
 
 Track unauthorized access to your WP website.
