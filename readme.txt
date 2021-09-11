@@ -3,7 +3,7 @@ Contributors: msWarak
 Tags: admin, track, unauthorized, access, security
 Requires at least: 3.6
 Tested up to: 5.8.1
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv2
 
 Track unauthorized access to your WP website.
@@ -26,6 +26,9 @@ Track unauthorized access to your WP website
 
 
 == Changelog ==
+= 1.1.4 ( 2021/09/11 ) =
+* Fix bugs.
+
 = 1.1.3 ( 2021/09/11 ) =
 * Adding screenshots.
 * Enabling browse unauthorized access date.
