@@ -116,14 +116,32 @@ function mswarak_track_unauthorized_access_index_page()
             {
                 $mswarak_track_data = json_decode($value->data, true);
                 $mswarak_track_date = date( "Y-m-d", $value->date );
+                $mswarak_track_IsUser = "";
+                if($mswarak_track_data["user"]["is_user"] == true)
+                {
+                    $mswarak_track_IsUser = "Yes ( {$mswarak_track_data["user"]["username"]} )";
+                }
+                else
+                {
+                    $mswarak_track_IsUser = "No";
+                }
                 
                 $mswarak_track_unauthorized_access_content .= "
+        <h2>" . __("Browse unauthorized access") . " #{$browse_access_id}</h2>
         <p>" . __("Message") . ": {$mswarak_track_data["message"]}</p>
-        <p>" . __("Date") . ": {$mswarak_track_date}</p>";
+        <p>" . __("Date") . ": {$mswarak_track_date}</p>
+        <p>" . __("URL") . ": {$mswarak_track_data["url"]}</p>
+        <p>" . __("Is user") . ": {$mswarak_track_IsUser}</p>
+        <p>" . __("IP") . ": {$mswarak_track_data["ip"]["ipaddress"]}</p>
+            
+        <h3>" . __("IP list") . "</h3>
+        <p>" . __("HTTP_CLIENT_IP") . ": {$mswarak_track_data["ip"]["ip_list"]["HTTP_CLIENT_IP"]}</p>
+        <p>" . __("HTTP_X_FORWARDED_FOR") . ": {$mswarak_track_data["ip"]["ip_list"]["HTTP_X_FORWARDED_FOR"]}</p>
+        <p>" . __("REMOTE_ADDR") . ": {$mswarak_track_data["ip"]["ip_list"]["REMOTE_ADDR"]}</p>";
             }
 
             // Allowed HTML tags array
-            $allowed_html_tags = array( 'h2' => array(), 'p' => array());
+            $allowed_html_tags = array( 'h2' => array(), 'h3' => array(), 'p' => array());
 
             // Escaping and print content
             echo wp_kses($mswarak_track_unauthorized_access_content, $allowed_html_tags);
