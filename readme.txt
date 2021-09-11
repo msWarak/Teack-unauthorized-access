@@ -26,6 +26,11 @@ Track unauthorized access to your WP website
 
 
 == Changelog ==
+= 1.1.3 ( 2021/09/11 ) =
+* Adding screenshots.
+* Enabling browse unauthorized access date.
+* Fix bugs.
+
 = 1.1.2 ( 2021/09/04 ) =
 * Preparing for localization.
 * Updating author name.
