@@ -23,7 +23,7 @@ function mswarak_track_unauthorized_access_menu_option()
     if ( is_super_admin() )
     {
         // Add the plugin to WP admin menu
-        add_menu_page( __("Track unauthorized access"), __("Track unauthorized access"), 'exist', 'mswarak_track_unauthorized_access', 'mswarak_track_unauthorized_access_index_page', 'dashicons-list-view');
+        add_menu_page( __("TUA - Track unauthorized access"), __("TUA"), 'exist', 'mswarak_track_unauthorized_access', 'mswarak_track_unauthorized_access_index_page', 'dashicons-list-view');
     }
     
     // Check if the plugin DB exists
@@ -127,17 +127,17 @@ function mswarak_track_unauthorized_access_index_page()
                 }
                 
                 $mswarak_track_unauthorized_access_content .= "
-        <h2>" . __("Browse unauthorized access") . " #{$browse_access_id}</h2>
-        <p>" . __("Message") . ": {$value->message}</p>
-        <p>" . __("Date") . ": {$mswarak_track_date}</p>
-        <p>" . __("URL") . ": {$mswarak_track_data["url"]}</p>
-        <p>" . __("Is user") . ": {$mswarak_track_IsUser}</p>
-        <p>" . __("IP") . ": {$mswarak_track_data["ip"]["ipaddress"]}</p>
+        <h2>" . sprintf( __( 'Browse unauthorized access #%s' ), $browse_access_id ) ."</h2>
+        <p>" . sprintf( __( 'Message: %s' ), $value->message ) . "</p>
+        <p>" . sprintf( __( 'Date: %s' ), $mswarak_track_date ) . "</p>
+        <p>" . sprintf( __( 'URL: %s' ), $mswarak_track_data["url"] ) . "</p>
+        <p>" . sprintf( __( 'Is user: %s' ), $mswarak_track_IsUser ) . "</p>
+        <p>" . sprintf( __( 'IP: %s' ), $mswarak_track_data["ip"]["ipaddress"] ) . "</p>
             
         <h3>" . __("IP list") . "</h3>
-        <p>" . __("HTTP_CLIENT_IP") . ": {$mswarak_track_data["ip"]["ip_list"]["HTTP_CLIENT_IP"]}</p>
-        <p>" . __("HTTP_X_FORWARDED_FOR") . ": {$mswarak_track_data["ip"]["ip_list"]["HTTP_X_FORWARDED_FOR"]}</p>
-        <p>" . __("REMOTE_ADDR") . ": {$mswarak_track_data["ip"]["ip_list"]["REMOTE_ADDR"]}</p>";
+        <p>" . sprintf( __( 'HTTP_CLIENT_IP: %s' ), $mswarak_track_data["ip"]["ip_list"]["HTTP_CLIENT_IP"] ) . "</p>
+        <p>" . sprintf( __( 'HTTP_X_FORWARDED_FOR: %s' ), $mswarak_track_data["ip"]["ip_list"]["HTTP_X_FORWARDED_FOR"] ) . "</p>
+        <p>" . sprintf( __( 'REMOTE_ADDR: %s' ), $mswarak_track_data["ip"]["ip_list"]["REMOTE_ADDR"] ) . "</p>";
             }
 
             // Allowed HTML tags array
