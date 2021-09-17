@@ -29,6 +29,7 @@ Track unauthorized access to your WP website
 = 1.1.5 ( 2021/09/17 ) =
 * Support multisite.
 * Preparing for localization.
+* Fix bugs.
 
 = 1.1.4 ( 2021/09/11 ) =
 * Fix bugs.
