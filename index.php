@@ -134,10 +134,20 @@ function mswarak_track_unauthorized_access_index_page()
         <p>" . sprintf( __( 'Is user: %s' ), $mswarak_track_IsUser ) . "</p>
         <p>" . sprintf( __( 'IP: %s' ), $mswarak_track_data["ip"]["ipaddress"] ) . "</p>
             
-        <h3>" . __("IP list") . "</h3>
-        <p>" . sprintf( __( 'HTTP_CLIENT_IP: %s' ), $mswarak_track_data["ip"]["ip_list"]["HTTP_CLIENT_IP"] ) . "</p>
-        <p>" . sprintf( __( 'HTTP_X_FORWARDED_FOR: %s' ), $mswarak_track_data["ip"]["ip_list"]["HTTP_X_FORWARDED_FOR"] ) . "</p>
-        <p>" . sprintf( __( 'REMOTE_ADDR: %s' ), $mswarak_track_data["ip"]["ip_list"]["REMOTE_ADDR"] ) . "</p>";
+        <h3>" . __("IP list") . "</h3>";
+                
+                if(isset($mswarak_track_data["ip"]["ip_list"]["HTTP_CLIENT_IP"]))
+                {
+                    $mswarak_track_unauthorized_access_content .= "<p>" . sprintf( __( 'HTTP_CLIENT_IP: %s' ), $mswarak_track_data["ip"]["ip_list"]["HTTP_CLIENT_IP"] ) . "</p>";
+                }
+                if(isset($mswarak_track_data["ip"]["ip_list"]["HTTP_X_FORWARDED_FOR"]))
+                {
+                    $mswarak_track_unauthorized_access_content .= "<p>" . sprintf( __( 'HTTP_X_FORWARDED_FOR: %s' ), $mswarak_track_data["ip"]["ip_list"]["HTTP_X_FORWARDED_FOR"] ) . "</p>";
+                }
+                if(isset($mswarak_track_data["ip"]["ip_list"]["REMOTE_ADDR"]))
+                {
+                    $mswarak_track_unauthorized_access_content .= "<p>" . sprintf( __( 'REMOTE_ADDR: %s' ), $mswarak_track_data["ip"]["ip_list"]["REMOTE_ADDR"] ) . "</p>";
+                }
             }
 
             // Allowed HTML tags array
