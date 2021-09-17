@@ -26,10 +26,12 @@ Track unauthorized access to your WP website
 
 
 == Changelog ==
+= 1.1.6 ( 2021/09/17 ) =
+* Fix bugs.
+
 = 1.1.5 ( 2021/09/17 ) =
 * Support multisite.
 * Preparing for localization.
-* Fix bugs.
 
 = 1.1.4 ( 2021/09/11 ) =
 * Fix bugs.
