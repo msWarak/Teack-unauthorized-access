@@ -4,7 +4,7 @@
  Plugin URI: http://mswarak.com
  Description: Track unauthorized access to your WP website
  Author: msWarak
- Version: 1.1.4
+ Version: 1.1.5
  Author URI: https://mswarak.com
 */
 
