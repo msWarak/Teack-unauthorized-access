@@ -119,11 +119,11 @@ function mswarak_track_unauthorized_access_index_page()
                 $mswarak_track_IsUser = "";
                 if($mswarak_track_data["user"]["is_user"] == true)
                 {
-                    $mswarak_track_IsUser = "Yes ( {$mswarak_track_data["user"]["username"]} )";
+                    $mswarak_track_IsUser = sprintf( __( 'Yes ( %s )' ), $mswarak_track_data["user"]["username"] );
                 }
                 else
                 {
-                    $mswarak_track_IsUser = "No";
+                    $mswarak_track_IsUser = __("No");
                 }
                 
                 $mswarak_track_unauthorized_access_content .= "
