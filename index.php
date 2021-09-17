@@ -179,8 +179,8 @@ function mswarak_track_unauthorized_access_report_insert( $message, $title, $arg
     $is_user = false;
     $username = "";
     $ipaddress = "UNKNOWN";
-    $actual_link = (isset ( $_SERVER ['HTTPS'] ) && $_SERVER ['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-    $actual_link = $_SERVER ["REQUEST_URI"];
+    $actual_link = (isset ( $_SERVER ['HTTPS'] ) && $_SERVER ['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER["HTTP_HOST"]}{$_SERVER["REQUEST_URI"]}";
+    //$actual_link = $_SERVER ["REQUEST_URI"];
     
     if (is_user_logged_in ())
     {
